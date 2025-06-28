@@ -1,10 +1,10 @@
-// LoginScreen.js
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth } from '../firebase'; // make sure firebase.js is in your root folder
+import { router } from 'expo-router';
 
-export default function LoginScreen() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,6 +13,7 @@ export default function LoginScreen() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('✅ Logged in!');
+      router.replace('/'); // go to home page
     } catch (err) {
       setError(err.message);
     }
