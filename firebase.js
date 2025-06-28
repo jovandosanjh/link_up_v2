@@ -1,9 +1,8 @@
-// Import the functions you need from the SDKs you need
+// firebase.js
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth"; // ✅ you need this to access auth
 
-// Your web app's Firebase configuration
+// Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDaJFSL5TBkOIvfqwOFkvaC1VkOZEv5HtE",
   authDomain: "linkup-v2222.firebaseapp.com",
@@ -13,5 +12,8 @@ const firebaseConfig = {
   appId: "1:355036676902:web:bda7c1bad2f0ab40a4b7e7"
 };
 
-// Initialize Firebase
+// Initialize Firebase and Auth
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app); // ✅ initialize auth with the app
+
+export { auth }; // ✅ export it so login.js can use it
