@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase'; // make sure firebase.js is in your root folder
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 import { router } from 'expo-router';
-import { Link } from 'expo-router';
 
-export default function Login() {
+export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log('✅ Logged in!');
-      router.replace('/'); // go to home page
+      await createUserWithEmailAndPassword(auth, email, password);
+      console.log('✅ Account created!');
+      router.replace('/'); // go to home page after signup
     } catch (err) {
       setError(err.message);
     }
@@ -22,7 +21,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login to LinkUp</Text>
+      <Text style={styles.title}>Sign Up for LinkUp</Text>
 
       <TextInput
         placeholder="Email"
@@ -40,12 +39,8 @@ export default function Login() {
         style={styles.input}
       />
 
-      <Button title="Login" onPress={handleLogin} />
-      <Link href="/signup">
-  <Text style={{ marginTop: 16, textAlign: 'center', color: '#0066cc' }}>
-    Don’t have an account? Sign up
-  </Text>
-</Link>
+      <Button title="Create Account" onPress={handleSignup} />
+      
 
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
