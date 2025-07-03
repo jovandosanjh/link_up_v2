@@ -1,8 +1,8 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; // ✅ you need this to access auth
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; // ✅ this was missing
 
-// Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDaJFSL5TBkOIvfqwOFkvaC1VkOZEv5HtE",
   authDomain: "linkup-v2222.firebaseapp.com",
@@ -12,8 +12,8 @@ const firebaseConfig = {
   appId: "1:355036676902:web:bda7c1bad2f0ab40a4b7e7"
 };
 
-// Initialize Firebase and Auth
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // ✅ initialize auth with the app
+const auth = getAuth(app);
+const db = getFirestore(app); // ✅ now this will work
 
-export { auth }; // ✅ export it so login.js can use it
+export { auth, db }; // ✅ export both

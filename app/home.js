@@ -1,15 +1,61 @@
-// app/home.js
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Platform, Text, ActivityIndicator } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
 
 export default function Home() {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      const loc = await Location.getCurrentPositionAsync({});
+      setLocation({
+        latitude: loc.coords.latitude,
+        longitude: loc.coords.longitude,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+      });
+    })();
+  }, []);
+
+  if (Platform.OS === 'web') {
+    return (
+      <View style={styles.center}>
+        <Text>🧭 Map doesn't work on web. Open this app in Expo Go.</Text>
+      </View>
+    );
+  }
+
+  if (!location) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator size="large" />
+        <Text>{errorMsg || 'Getting your location...'}</Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>🏠 Welcome Home!</Text>
-    </View>
+    <MapView style={styles.map} initialRegion={location}>
+      <Marker coordinate={location} title="You are here" />
+    </MapView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { fontSize: 24 },
+  map: {
+    flex: 1,
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
