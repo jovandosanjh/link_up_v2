@@ -14,7 +14,7 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('✅ Logged in!');
-      router.replace('/'); // go to home page
+      router.replace('/home'); // go to home page
     } catch (err) {
       setError(err.message);
     }
