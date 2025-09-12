@@ -1,50 +1,79 @@
-# Welcome to your Expo app 👋
+# LinkUp
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+LinkUp is a React Native (Expo) mobile app that helps groups find
+central meeting spots and discover venues. It calculates geographic
+midpoints and recommends restaurants or places using **Google Maps**,
+**Yelp Fusion**, and **OpenAI APIs**.
 
-## Get started
+Authentication and collaboration are powered by **Firebase Auth** and
+**Firestore**, supporting real-time updates. The UI includes map pins,
+interactive cards, and swipeable actions.
 
-1. Install dependencies
+------------------------------------------------------------------------
 
-   ```bash
-   npm install
-   ```
+## Techniques Used
 
-2. Start the app
+-   **[React Native
+    Components](https://reactnative.dev/docs/components-and-apis)** for
+    cross-platform UI development.\
+-   **[Expo](https://docs.expo.dev/)** for streamlined builds and
+    testing across iOS and Android.\
+-   **Custom Hooks** (`hooks/`) to encapsulate shared logic like API
+    calls or state management.\
+-   **Reusable Components** (`components/`) for maps, cards, and
+    interactive UI widgets.\
+-   **[Firebase Auth](https://firebase.google.com/docs/auth)** and
+    **[Firestore](https://firebase.google.com/docs/firestore)** for
+    secure login and real-time data sync.\
+-   **[Google Maps
+    SDK](https://developers.google.com/maps/documentation)** for
+    geolocation and midpoint calculation.\
+-   **[Yelp Fusion
+    API](https://docs.developer.yelp.com/docs/fusion-intro)** for venue
+    recommendations.\
+-   **[OpenAI API](https://platform.openai.com/docs/)** for AI-driven
+    insights and contextual suggestions.\
+-   **[ESLint](https://eslint.org/)** with a custom config for
+    consistent code quality.\
+-   **[TypeScript](https://www.typescriptlang.org/)** integration
+    alongside JavaScript for type safety and better developer tooling.
 
-   ```bash
-   npx expo start
-   ```
+------------------------------------------------------------------------
 
-In the output, you'll find options to open the app in a
+## Notable Technologies and Libraries
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+-   **React Native (Expo)** --- unified app development across
+    iOS/Android.\
+-   **Firebase** --- authentication and real-time database sync.\
+-   **Google Maps** + **Yelp Fusion** --- geospatial and venue
+    discovery.\
+-   **OpenAI API** --- adds contextual intelligence.\
+-   **TypeScript** --- improves maintainability and scalability.\
+-   **Kotlin (Android folder)** --- native extensions or
+    platform-specific features.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+------------------------------------------------------------------------
 
-## Get a fresh project
+## Project Structure
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+``` bash
+.
+├── .vscode/          # Editor configuration
+├── android/          # Native Android build files (Kotlin/Gradle)
+├── app/              # Main app codebase
+├── assets/           # App icons and splash assets
+├── components/       # Reusable React Native UI components
+├── constants/        # Shared constants (API keys, config, styles)
+├── hooks/            # Custom React hooks for state and data fetching
+├── scripts/          # Project automation or setup scripts
+├── .gitignore
+├── README.md
+├── app.json          # Expo app configuration
+├── eslint.config.js  # Linting rules
+├── firebase.js       # Firebase setup and initialization
+├── package.json      # Dependencies and scripts
+├── package-lock.json
+└── tsconfig.json     # TypeScript configuration
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+------------------------------------------------------------------------
